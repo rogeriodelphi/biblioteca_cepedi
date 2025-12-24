@@ -1,116 +1,113 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-<body>
 <div class="content-wrapper">
-        <div class="container-fluid">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="{% url 'index' %}">Home</a>
-                </li>
-                <li class="breadcrumb-item">
-                    {% block bread %}
-                    {% endblock bread %}
-                </li>
-            </ol>
-            <div class="row">
-                <div class="col-12">
-                    {% block pages %}
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="card" style="width: 18rem;">
-                                    <div class="card-header">
-                                        <i class="fa fa-user"></i><B>Alunos</B></a>
-                                    </div>
-                                    <div class="card-body text-center">
-                                    <h1 class="card-title">{{ total_alunos }}</h1>
-                                    <h3 class="card-subtitle mb-2 text-muted">Alunos</h3><br>
-                                    <a class="btn btn-success btn-sm" href="{% url 'alunos:listar_alunos' %}"><i class="fa fa-plus"></i><span> Cadastrar</span></a>
-                                    <!-- <a href="#" class="card-link">Outro link</a> -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="card" style="width: 18rem;">
-                                    <div class="card-header">
-                                        <i class="fa fa-book"></i><B> Livros</B></a>
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <h1 class="card-title">{{ total_livros }}</h1>
-                                        <h3 class="card-subtitle mb-2 text-muted"> Livros</h3><br>
-                                        <a class="btn btn-success btn-sm" href="{% url 'livros:listar_livros' %}"><i class="fa fa-plus"></i><span> Cadastrar</span></a>
-                                        <!-- <a href="#" class="card-link">Outro link</a> -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="card" style="width: 18rem;">
-                                    <div class="card-header">
-                                        <i class="fa fa-calendar"></i><B> Empréstimos</B></a>
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <h1 class="card-title">{{ total_emprestimos }}</h1>
-                                        <h3 class="card-subtitle mb-2 text-muted">Empréstimos</h3><br>
-                                        <a class="btn btn-success btn-sm" href="{% url 'emprestimos:listar_emprestimos' %}"><i class="fa fa-plus"></i><span> Agendar</span></a>
-                                        <!-- <a href="#" class="card-link">Outro link</a> -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="card" style="width: 18rem;">
-                                    <div class="card-header">📊 Empréstimos por Mês
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <div class="card-body">
-                                            <canvas id="graficoEmprestimos"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-{#                        <div class="card mt-12">#}
-{#                            <div class="card-header">#}
-{#                                📊 Empréstimos por Mês#}
-{#                            </div>#}
-{#                            <div class="card-body">#}
-{#                                <canvas id="graficoEmprestimos"></canvas>#}
-{#                            </div>#}
-{#                        </div>#}
+    <div class="container-fluid">
 
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                {% block bread %}{% endblock bread %}
+            </li>
+        </ol>
+
+        <!-- Cards -->
+        <div class="row">
+
+            <!-- Alunos -->
+            <div class="col-sm-3 mb-3">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <i class="fa fa-user"></i> <strong>Alunos</strong>
                     </div>
-                    {% endblock pages %}
+                    <div class="card-body text-center">
+                        <h1>{{ total_alunos }}</h1>
+                        <p class="text-muted">Alunos cadastrados</p>
+                        <a class="btn btn-success btn-sm"
+                           href="{% url 'alunos:listar_alunos' %}">
+                            <i class="fa fa-plus"></i> Cadastrar
+                        </a>
+                    </div>
                 </div>
             </div>
+
+            <!-- Livros -->
+            <div class="col-sm-3 mb-3">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <i class="fa fa-book"></i> <strong>Livros</strong>
+                    </div>
+                    <div class="card-body text-center">
+                        <h1>{{ total_livros }}</h1>
+                        <p class="text-muted">Livros cadastrados</p>
+                        <a class="btn btn-success btn-sm"
+                           href="{% url 'livros:listar_livros' %}">
+                            <i class="fa fa-plus"></i> Cadastrar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empréstimos -->
+            <div class="col-sm-3 mb-3">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <i class="fa fa-calendar"></i> <strong>Empréstimos</strong>
+                    </div>
+                    <div class="card-body text-center">
+                        <h1>{{ total_emprestimos }}</h1>
+                        <p class="text-muted">Empréstimos Ativos</p>
+                        <a class="btn btn-success btn-sm"
+                           href="{% url 'emprestimos:listar_emprestimos' %}">
+                            <i class="fa fa-plus"></i> Agendar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráfico -->
+            <div class="col-sm-3 mb-3">
+                <div class="card h-100">
+                    <div class="card-header">
+                        📊 Empréstimos por Mês
+                    </div>
+                    <div class="card-body">
+                        <canvas id="graficoEmprestimos"></canvas>
+                    </div>
+                </div>
+            </div>
+
         </div>
-
     </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<div style="width: 200px;">
-    <canvas id="graficoEmprestimos"></canvas>
 </div>
 
-<script>
-    new Chart(document.getElementById('graficoEmprestimos'), {
-        type: 'pie',
-        data: {
-            labels: {{ meses|safe }},
-            datasets: [{
-                label: 'Total de Empréstimos',
-                data: {{ totais|safe }},
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: { beginAtZero: true }
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const ctx = document.getElementById('graficoEmprestimos');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {{ meses|safe }},
+                datasets: [{
+                    label: 'Total de Empréstimos',
+                    data: {{ totais|safe }},
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
             }
-        }
-    });
-</script>
-
-</body>
-
+        });
+    </script>
 
 {% endblock conteudo %}
