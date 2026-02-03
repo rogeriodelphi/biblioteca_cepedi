@@ -5,6 +5,7 @@ from apps.livros.models import Livro
 from apps.emprestimos.models import Emprestimo
 from django.db.models.functions import TruncMonth
 from django.db.models import Count
+
 @login_required(login_url='usuarios:login')
 def index(request):
     total_alunos =  Aluno.objects.all().count()

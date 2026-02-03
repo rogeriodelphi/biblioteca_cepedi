@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import authenticate
 
 
-def index(request):
-    return render(request, 'usuarios/index.html')
+# def index(request):
+#     return render(request, 'usuarios/index.html')
 
 
-def inserir_usuario(request):
+def     inserir_usuario(request):
     if request.method == 'GET':
         return render(request, 'usuarios/inserir_usuario.html')
     else:
@@ -44,5 +45,5 @@ def login(request):
             return redirect('index')
         else:
             # Handle invalid credentials
-            return HttpResponse('Email ou senha inválido.')
+            return HttpResponse('Usuário ou senha inválido.')
 
