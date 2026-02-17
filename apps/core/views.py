@@ -6,7 +6,10 @@ from apps.emprestimos.models import Emprestimo
 from django.db.models.functions import TruncMonth
 from django.db.models import Count
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a2a0c0395d3f5952eea83bffc4c24d6d98a84a1d
 @login_required(login_url='usuarios:login')
 def index(request):
     total_alunos =  Aluno.objects.all().count()
