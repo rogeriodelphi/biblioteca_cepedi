@@ -15,6 +15,7 @@ urlpatterns = [
     path('livros/', include('apps.livros.urls', namespace='livros')),
     path('emprestimos/', include('apps.emprestimos.urls', namespace='emprestimos')),
     path('usuarios/', include('apps.usuarios.urls', namespace='usuarios')),
+    path('autores/', include('apps.autores.urls', namespace='autores')),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
 ]
